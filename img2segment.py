@@ -10,8 +10,6 @@ import cv2
 
 image_path = input("Enter image path: ")
 
-source_image = Image.open(image_path)
-source_image = np.array(source_image.convert("RGB"))
 
 
 # input_point = np.array([[400,800]])
@@ -23,6 +21,10 @@ input_point = [int(x),int(y)]
 
 def img2segmnt(source_image , input_point ):
     
+    source_image = Image.open(image_path)
+    source_image = np.array(source_image.convert("RGB")) 
+    
+       
     sam2_checkpoint = "D:\\NTI\\git task\\SAM2-deployment\\sam2.1_hiera_large.pt"
     model_cfg = "configs/sam2.1/sam2.1_hiera_l.yaml"
     sam2_model = build_sam2(model_cfg, sam2_checkpoint , device='cpu')
@@ -60,4 +62,4 @@ def img2segmnt(source_image , input_point ):
     
     return imagePNG  
   
-img2segmnt(source_image , input_point )
+img2segmnt(image_path , input_point )
