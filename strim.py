@@ -37,8 +37,8 @@ if uploaded_file:
         draw.text((x+10, y+10), f"P{i+1}", fill="red")
 
     st.subheader("Image with Points")
-    # st.image(output_image, use_container_width=True)
     st.image(output_image, width='stretch')
+    # st.image(output_image, width='stretch')
 
     # # Show coordinates
     # if len(st.session_state.points) > 0:
@@ -48,7 +48,7 @@ if uploaded_file:
 
     # #  Show original image again
     # st.subheader("Image without background")
-    # st.image(image, use_container_width=True)
+    # st.image(image, width='stretch')
 
     # # Reset button
     # if st.button("Reset"):
@@ -71,11 +71,13 @@ if uploaded_file:
 
         if response.status_code == 200:
             st.subheader("Segmented Images")
-            segmented_images = response.json()["segmented_images"]
+            segmented_images = response.json()["segmented_image"]
             for i, img_b64 in enumerate(segmented_images):
                 img_data = base64.b64decode(img_b64)
                 segmented_img = Image.open(io.BytesIO(img_data))
-                st.image(segmented_img, caption=f"Segmented for Point {i+1}", use_container_width=True)
+                # st.image(segmented_img, caption=f"Segmented for Point {i+1}", width='stretch')
+                st.image(segmented_img, caption=f"Segmented for Point {i+1}", width='stretch')
+
         else:
             st.error(f"API Error: {response.text}")
 

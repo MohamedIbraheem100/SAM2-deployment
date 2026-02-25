@@ -21,7 +21,7 @@ def img2segmnt(source_image , input_point ):
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
     sam2_checkpoint = "sam2.1_hiera_large.pt"
-    model_cfg = "sam2\configs\sam2.1\sam2.1_hiera_l.yaml"
+    model_cfg = "configs/sam2.1/sam2.1_hiera_l.yaml"
 
     
     sam2_model = build_sam2(model_cfg, sam2_checkpoint ,device='cpu')
